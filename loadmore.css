@@ -1,0 +1,28 @@
+a {
+	background: red;
+	border: 1px solid ;
+	text-decoration: none;
+    
+
+}
+.btn {
+        text-align: center;
+        line-height: 40px;
+        display: block;
+        border: 1px solid black;
+        width: 80px;
+        height: 40px;
+        margin: 0 auto;
+        background: yellow;
+        }
+
+
+
+         #ct li {
+            border: 1px solid black;
+            margin: 20px;
+            padding: 20px;
+        }
+        #ct li:hover {
+            background: green;
+        }

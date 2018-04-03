@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="./loadmore.css">
+</head>
+<body>
+	<ul id = "ct">
+	</ul>
+	<a href="#" id="button" class="btn">
+	加载更多
+    </a>
+<script type="text/javascript">
+
+	var btn = document.querySelector('#button')
+	var ct = document.querySelector('#ct')
+	var pageIndex = 0
+	var isDataArrive = true
+	
+	btn.addEventListener('click',function(e){
+		var xhr = new XMLHttpRequest()
+		e.preventDefault()
+		if( !isDataArrive){
+			return;
+		}
+			xhr.onload = function(){
+			if(xhr.status === 200 || xhr.status === 304){
+				var results = JSON.parse(xhr.responseText)
+			
+				console.log(results)
+			var fragment = document.createDocumentFragment()
+
+			for(var i = 0; i < results.length; i++){
+      			var node = document.createElement('li')
+      			node.innerText = results[i]
+                fragment.appendChild(node)
+			}
+             ct.appendChild(fragment);
+             pageIndex += 5
+             isDataArrive = true;
+			 }else{
+			 	console.log("出错了")
+			 }
+		}
+		   isDataArrive = true
+	xhr.open('GET','loadmore?index='+pageIndex+'&length=5')
+	xhr.send()
+	isDataArrive = false
+
+})
+	
+
+
+
+
+</script>
+</body>
+</html>
